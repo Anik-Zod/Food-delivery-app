@@ -1,0 +1,15 @@
+# Node modules for backend and frontend
+backend/node_modules/
+frontend/node_modules/
+
+# Environment variables
+backend/.env
+frontend/.env
+
+# Logs
+*.log
+logs/
+
+# Windows system files
+Thumbs.db
+Desktop.ini
