@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function MainBanner() {
     return (
-        <div className="relative">
+        <div className="relative mt-9">
             <img
                 src={assets.main_banner_bg}
                 alt="banner"

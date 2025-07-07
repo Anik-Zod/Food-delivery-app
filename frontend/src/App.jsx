@@ -4,12 +4,17 @@ import Home from './pages/Home'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer';
+import { useSelector } from 'react-redux';
+import Login from './components/Login';
 
 export default function App() {
   const isSellerPath = useLocation().pathname.includes('seller');
+  const showUserLogin = useSelector(state=>state.app.showUserLogin) 
+  
   return (
     <div>
       {isSellerPath?null:<Navbar/>}
+      {showUserLogin && <Login/>}
       <Toaster/>
       <div className={` ${isSellerPath ? '' : 'px-4 md:px-12 lg:px-20 xl:px-28'}`}>
         <Routes>
