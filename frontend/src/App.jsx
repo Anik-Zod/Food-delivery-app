@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import Login from './components/Login';
 import AllProduct from './pages/AllProduct';
 import ProductCategory from './pages/ProductCategory';
+import ProductDetails from './pages/ProductDetails';
 
 export default function App() {
   const isSellerPath = useLocation().pathname.includes('seller');
@@ -15,6 +16,7 @@ export default function App() {
   
   return (
     <div>
+      
       {isSellerPath?null:<Navbar/>}
       {showUserLogin && <Login/>}
       <Toaster/>
@@ -23,6 +25,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<AllProduct />} />
           <Route path="/products/:category" element={<ProductCategory/>} />
+          <Route path="/products/:category/:id" element={<ProductDetails/>} />
         </Routes>
       </div>
       <Footer/>
