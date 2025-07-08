@@ -1,19 +1,33 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {assets} from '../assets/assets'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowUserLogin,logout } from '../features/appSlice'
+import { setSearchQuery } from '../features/productSlice'
 
 export default function Navbar() {
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
+    
+    const {searchQuery} = useSelector((state) => state.products)
     const {user,showUserLogin} = useSelector((state) => state.app)
-   console.log(user,showUserLogin)
+    const navigate = useNavigate();
 
    const handleLogout = () => {
         dispatch(setShowUserLogin(false))
         dispatch(logout())
     }
+
+    const handleSearch = (e)=>{
+        dispatch(setSearchQuery(e.target.value))
+    }
+    useEffect(()=>{
+          if(searchQuery.length>0){
+            navigate('/products')
+            console.log("anik="+searchQuery);
+            
+          }
+    },[searchQuery])
 
 
     return (
@@ -31,7 +45,7 @@ export default function Navbar() {
 
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-                    <input className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
+                    <input onChange={handleSearch}  className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
                     <img src={assets.search_icon} alt="" />
                 </div>
 

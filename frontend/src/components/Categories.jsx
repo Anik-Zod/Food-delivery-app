@@ -16,7 +16,7 @@ function Categories() {
             className="group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center hover:shadow-lg transition"
             style={{ backgroundColor: category.bgColor }}
             onClick={() => {
-              navigate(`/category/${category.text.toLowerCase()}`);
+              navigate(`/products/${category.path.toLowerCase()}`);
             }}
           >
             <img

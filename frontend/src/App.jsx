@@ -6,6 +6,8 @@ import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer';
 import { useSelector } from 'react-redux';
 import Login from './components/Login';
+import AllProduct from './pages/AllProduct';
+import ProductCategory from './pages/ProductCategory';
 
 export default function App() {
   const isSellerPath = useLocation().pathname.includes('seller');
@@ -19,6 +21,8 @@ export default function App() {
       <div className={` ${isSellerPath ? '' : 'px-4 md:px-12 lg:px-20 xl:px-28'}`}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<AllProduct />} />
+          <Route path="/products/:category" element={<ProductCategory/>} />
         </Routes>
       </div>
       <Footer/>

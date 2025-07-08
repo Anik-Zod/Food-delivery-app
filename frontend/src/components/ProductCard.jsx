@@ -6,7 +6,7 @@ const ProductCard = ({product}) => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.cartItems);
     const quantity = cartItems[product._id] || 0;
-    console.log(cartItems)
+
     const handleAdd = () => {
         dispatch(addCartItems({ productId: product._id }));
     };
