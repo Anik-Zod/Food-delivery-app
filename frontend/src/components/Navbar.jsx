@@ -11,6 +11,8 @@ export default function Navbar() {
     
     const {searchQuery} = useSelector((state) => state.products)
     const {user,showUserLogin} = useSelector((state) => state.app)
+    
+    const cart = useSelector(state=>state.cart.cart)
     const navigate = useNavigate();
 
    const handleLogout = () => {
@@ -24,8 +26,6 @@ export default function Navbar() {
     useEffect(()=>{
           if(searchQuery.length>0){
             navigate('/products')
-            console.log("anik="+searchQuery);
-            
           }
     },[searchQuery])
 
@@ -49,9 +49,9 @@ export default function Navbar() {
                     <img src={assets.search_icon} alt="" />
                 </div>
 
-                <div className="relative cursor-pointer">
+                <div onClick={()=>navigate('/cart')} className="relative cursor-pointer">
                     <img src={assets.cart_icon} className='w-6 opacity-60' alt="" />
-                    <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">3</button>
+                    <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{cart.length}</button>
                 </div>
 
                 {user?(<>

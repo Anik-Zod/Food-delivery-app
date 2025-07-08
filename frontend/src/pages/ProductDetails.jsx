@@ -15,12 +15,24 @@ const ProductDetails = () => {
     
     // find product by id
     const product = products.find((item)=>item._id === id)
-    
+    console.log(product)
     // to show image 
     const [thumbnail, setThumbnail] = useState(product.image[0]);
     
     // to show sugestion 
     const[relatedProducts,setRelatedProducts] = useState([])
+    
+    const handleAddTOCart = ()=>{
+    dispatch(
+      addCartItems({
+        productId: product._id,
+        name: product.name,
+        price: product.offerPrice,
+        image: product.image,
+      })
+    );
+    }
+
 
     useEffect(()=>(
        setRelatedProducts(products.filter((item)=>item.category === product.category))
@@ -29,7 +41,7 @@ const ProductDetails = () => {
     useEffect(()=>(
        setThumbnail(product.image[0])
     ),[product])
-
+ 
 
     return product && (
         <div className="mt-16">
@@ -79,10 +91,10 @@ const ProductDetails = () => {
                     </ul>
 
                     <div className="flex items-center mt-10 gap-4 text-base">
-                        <button onClick={()=>dispatch(addCartItems(id))} className="w-full py-3.5 cursor-pointer font-medium bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition" >
+                        <button onClick={handleAddTOCart} className="w-full py-3.5 cursor-pointer font-medium bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition" >
                             Add to Cart
                         </button>
-                        <button onClick={()=>{dispatch(addCartItems(id)),navigate('/cart')}} className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary-dull transition" >
+                        <button onClick={()=>{handleAddTOCart();navigate('/cart')}} className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary-dull transition" >
                             Buy now
                         </button>
                     </div>
@@ -96,7 +108,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6 w-full">
                     {relatedProducts.filter(item=>item.inStock).map((item,index)=>(
-                        <ProductCard product={item}/>
+                        <ProductCard key={index} product={item}/>
                     ))}
                 </div>
                 <button onClick={()=>{navigate(`/products`),scrollTo(0,0)  } } className="mx-auto cursor-pointer px-12 my-16 py-2.5 border rounded text-primary hover:bg-primary/10 transition">See more ...</button>

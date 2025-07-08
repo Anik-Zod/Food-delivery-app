@@ -8,15 +8,15 @@ function MainBanner() {
             <img
                 src={assets.main_banner_bg}
                 alt="banner"
-                className="w-full hidden md:block h-[420px] object-cover rounded-xl shadow-xl"
+                className="w-full hidden md:block h-[420px] object-cover rounded-xl "
             />
             <img
                 src={assets.main_banner_bg_sm}
                 alt="banner"
                 className="w-full md:hidden h-[260px] object-cover rounded-xl shadow-lg"
             />
-            <div className="absolute inset-0 flex flex-col items-start justify-center text-left px-6 md:px-16 bg-black/40 rounded-xl h-full">
-                <h1 className="text-white text-4xl md:text-6xl font-extrabold drop-shadow-2xl mb-8 tracking-tight">
+            <div className="absolute inset-0 flex flex-col items-start justify-center text-left px-6 md:px-16 rounded-xl h-full">
+                <h1 className="text-black text-4xl md:text-6xl font-extrabold drop-shadow-2xl mb-8 tracking-tight">
                     Freshness You Can Trust,<br className="hidden md:block" /> Savings You Will Love!
                 </h1>
                 <Link
