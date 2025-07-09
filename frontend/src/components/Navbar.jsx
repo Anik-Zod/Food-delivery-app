@@ -41,7 +41,10 @@ export default function Navbar() {
                 <NavLink to={'/'}>Home</NavLink>
                 <NavLink to={'/products'}>All Product</NavLink>
                 <NavLink to={'/contact'}>Contact</NavLink>
-                {user && <NavLink onClick={() => setOpen(false)} to={'/orders'} className="block">ALL My Orders</NavLink>}
+                
+                { user && <div onClick={() => setOpen(false)} className='bg-primary/20 px-3 py-2 hover:bg-primary-dull rounded-xl'> 
+                   <NavLink  to={'/my-orders'} className="block">My Orders</NavLink>
+                </div>}
 
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
@@ -76,7 +79,9 @@ export default function Navbar() {
                 <NavLink onClick={() => setOpen(false)} to={'/'} className="block">Home</NavLink>
                 <NavLink onClick={() => setOpen(false)} to={'/about'} className="block">About</NavLink>
                 <NavLink onClick={() => setOpen(false)} to={'/contact'} className="block">Contact</NavLink>
-                {user && <NavLink onClick={() => setOpen(false)} to={'/orders'} className="block">ALL My Orders</NavLink>}
+                               { user && <div onClick={() => setOpen(false)} className='bg-primary/20 px-3 py-2 hover:bg-primary-dull rounded-xl'> 
+                   <NavLink  to={'/my-orders'} className="block">My Orders</NavLink>
+                </div>}
                 
                 {user?(
                     <button onClick={() =>{handleLogout();setOpen(false)}} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-dull transition text-white rounded-full text-sm">
