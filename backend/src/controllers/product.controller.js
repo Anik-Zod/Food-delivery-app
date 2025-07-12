@@ -6,7 +6,7 @@ import Product from '../models/product.model.js';
     try {
         //parse data into json format
         const productData = JSON.parse(req.body.productData);
-       if(!productData.name || !productData.price || !productData.category || !productData.description) {
+       if(!productData.name || !productData.category || !productData.price || !productData.category || !productData.description) {
             return res.json({success:false,message:"Please fill all fields"})
         }
         // get uploaded files
