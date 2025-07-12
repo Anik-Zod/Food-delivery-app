@@ -9,6 +9,7 @@ export default function Navbar() {
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     
+    
     const {searchQuery} = useSelector((state) => state.products)
     const {user,showUserLogin} = useSelector((state) => state.app)
     
@@ -31,9 +32,10 @@ export default function Navbar() {
 
 
     return (
-      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
-            <NavLink to={'/'}>
-                <img className="h-9" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg" alt="dummyLogoColored" />
+      <nav className="flex items-center justify-between px-6 sm:px-6 md:px-16 lg:px-24 xl:px-27 py-4 border-b border-gray-300 bg-white relative transition-all">
+
+            <NavLink to={'/'} >
+                <img className="h-10" src="logo.png" alt="dummyLogoColored" />
             </NavLink>
 
             {/* Desktop Menu */}
@@ -57,13 +59,13 @@ export default function Navbar() {
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{cart.length}</button>
                 </div>
 
-                {user?(<>
-                   <img src={user.image} className="h-10" alt="" />
+                {user?(<div className='flex items-center gap-4'>
+                   <img src={user.image} className="h-10 rounded-full " alt="" />
                     <p>{user.name}</p>
                     <button onClick={handleLogout} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-dull transition text-white rounded-full text-sm">
                         logout
                     </button>
-                </>
+                </div>
                 ): (<button  onClick={() => { setOpen(false); dispatch(setShowUserLogin(true)); }} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-dull transition text-white rounded-full text-sm">
                     Login
                 </button>)}

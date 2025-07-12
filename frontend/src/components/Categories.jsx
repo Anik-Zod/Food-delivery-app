@@ -1,10 +1,11 @@
-import React from "react";
-import { categories } from "../assets/assets"; // Assuming you already have categories in your assets
 import { useNavigate } from "react-router-dom";
+import useFetch from '../hooks/useFetch'
 
 function Categories() {
   const navigate = useNavigate();
-
+  const{data:categories,isLoading} = useFetch('category','/product/getCategory')
+  if(isLoading) return <h1>Loading</h1>
+  
   return (
     <div className="mt-16">
       <p className="text-2xl md:text-3xl font-medium">Categories</p>
@@ -14,9 +15,9 @@ function Categories() {
           <div
             key={index}
             className="group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center hover:shadow-lg transition"
-            style={{ backgroundColor: category.bgColor }}
+            style={{ backgroundColor: bgColor[index % bgColor.length] }}
             onClick={() => {
-              navigate(`/products/${category.path.toLowerCase()}`);
+              navigate(`/products/${category.category}`);
             }}
           >
             <img
@@ -24,7 +25,7 @@ function Categories() {
               alt={category.text}
               className="group-hover:scale-110 transition duration-300 max-w-28"
             />
-            <p className="text-sm font-medium">{category.text}</p>
+            <p className="text-sm font-medium">{category.category}</p>
           </div>
         ))}
       </div>
@@ -33,3 +34,13 @@ function Categories() {
 }
 
 export default Categories;
+
+ const bgColor = [
+  "#FEF6DA",
+  "#FEE0E0",
+  "#F0F5DE",
+  "#E1F5EC",
+  "#FEE6CD",
+  "#E0F6FE",
+  "#F1E3F9"
+];

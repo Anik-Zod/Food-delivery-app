@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { dummyOrders } from '../assets/assets';
+
 
 function MyOrders() {
     const [myOrders, setMyOrders] = useState([]);
-
+    const[dummyOrders,setDummyOrders]=useState([])
     useEffect(() => {
         setMyOrders(dummyOrders);
     }, []);

@@ -28,7 +28,7 @@ const Cart = () => {
 
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col md:flex-row -py-16 mt-16">
+    <div className="flex flex-col md:flex-row -py-16 mt-12">
       <div className="flex-1 max-w-4xl">
         <h1 className="text-3xl font-medium mb-6">
           Shopping Cart{" "}
@@ -50,7 +50,7 @@ const Cart = () => {
               <div className="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded overflow-hidden">
                 <img
                   className="max-w-full h-full object-cover"
-                  src={product.image}
+                  src={product.image[0]}
                   alt={product.name}
                 />
               </div>

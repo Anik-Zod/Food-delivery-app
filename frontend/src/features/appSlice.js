@@ -4,7 +4,7 @@ import { assets } from "../assets/assets";
 const initialState = {
   user: {
     name: "Anik",
-    image: assets.profile_icon,
+    image: "https://res.cloudinary.com/dj6y31jyx/image/upload/v1752071229/IMG_0041_oo6ezt.jpg",
   },
 
   isSeller: false,

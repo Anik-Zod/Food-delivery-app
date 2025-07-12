@@ -27,13 +27,14 @@ app.use(helmet());
 app.use(compression())
 app.use(morgan('dev'))
 app.use(cors({
-  origin:'*',
+  origin:'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
   allowedHeaders: ['Content-Type','Authorization']
 }))
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max:100,
+  max:1000,
   message: 'Too many requests, please try again later.'
 }))
 

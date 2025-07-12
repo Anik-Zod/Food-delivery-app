@@ -13,6 +13,8 @@ import Cart from './pages/Cart';
 import AddAddress from './pages/AddAddress';
 import MyOrders from './pages/MyOrders';
 
+
+
 export default function App() {
   const isSellerPath = useLocation().pathname.includes('seller');
   const showUserLogin = useSelector(state=>state.app.showUserLogin) 

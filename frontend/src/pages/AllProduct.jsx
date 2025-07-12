@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux'
 import ProductCard from '../components/ProductCard'
 import { useEffect, useState } from 'react'
+import useFetch from '../hooks/useFetch'
 
 function AllProduct() {
-const products = useSelector(state=>state.products.products)
+const { data:products, isLoading, isError, error, refetch } = useFetch('products', '/product/list');
 const searchQuery = useSelector(state=>state.products.searchQuery)
-
 const [filterProducts,setFilterProducts] = useState([])
 
 
 useEffect(()=>{
+  if(!products)return
    if(searchQuery.length > 0){
      setFilterProducts(products.filter(
         product=>product.name.toLowerCase().includes(searchQuery.toLowerCase())))
@@ -17,6 +18,9 @@ useEffect(()=>{
      setFilterProducts(products)
    }
 },[products,searchQuery])
+
+if(isLoading)return <h1>Loading...</h1>
+if(isError)return <h1>{error}</h1>
     return (
     <div className='mt-16 flex flex-col'>
         <div className='flex flex-col items-end w-max'>
@@ -24,7 +28,7 @@ useEffect(()=>{
             <div className='w-16 h-0.5 bg-primary rounded-full'></div>
         </div>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6'>
-            {filterProducts.filter(product=>product.inStock).map((product,index)=>(
+            {filterProducts?.filter(product=>product.inStock).map((product,index)=>(
                 <ProductCard key={index} product={product}/>
             ))}
         </div>

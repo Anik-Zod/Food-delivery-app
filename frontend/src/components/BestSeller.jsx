@@ -1,11 +1,12 @@
 import React from 'react'
 import ProductCard from './ProductCard'
-import { useSelector } from 'react-redux'
+import useFetch from '../hooks/useFetch'
 
 
 function BestSeller() {
-const products = useSelector(state=>state.products.products)
-
+const{data:products,error,isError,isLoading} = useFetch("products","/product/list")
+if(isLoading) return <h1>Pleas wait ...</h1>
+if(isError) return <h1>{error}</h1>
   return (
     <div className='mt-16'>
         <p className='text-2xl md:text-3xl font-medium'>Best Seller</p>
