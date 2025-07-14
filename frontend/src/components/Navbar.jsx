@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import {assets} from '../assets/assets'
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowUserLogin,logout } from '../features/appSlice'
+import { setShowUserLogin,logout, setUser } from '../features/appSlice'
 import { setSearchQuery } from '../features/productSlice'
+import axiosInstance from '../api/axios'
 
 export default function Navbar() {
     const dispatch = useDispatch()
@@ -17,8 +18,9 @@ export default function Navbar() {
     const navigate = useNavigate();
 
    const handleLogout = () => {
-        dispatch(setShowUserLogin(false))
         dispatch(logout())
+        dispatch(setShowUserLogin(false))
+        axiosInstance.get('/user/logout')
     }
 
     const handleSearch = (e)=>{
@@ -35,14 +37,14 @@ export default function Navbar() {
       <nav className="flex items-center justify-between px-6 sm:px-6 md:px-16 lg:px-24 xl:px-27 py-4 border-b border-gray-300 bg-white relative transition-all">
 
             <NavLink to={'/'} >
-                <img className="h-10" src="logo.png" alt="dummyLogoColored" />
+                <img className="h-10" src="https://res.cloudinary.com/dj6y31jyx/image/upload/v1752504763/logo_lppprr.png" alt="dummyLogoColored" />
             </NavLink>
 
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-8">
                 <NavLink to={'/'}>Home</NavLink>
                 <NavLink to={'/products'}>All Product</NavLink>
-                <NavLink to={'/contact'}>Contact</NavLink>
+
                 
                 { user && <div onClick={() => setOpen(false)} className='bg-primary/20 px-3 py-2 hover:bg-primary-dull rounded-xl'> 
                    <NavLink  to={'/my-orders'} className="block">My Orders</NavLink>

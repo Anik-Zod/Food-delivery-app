@@ -1,14 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { assets } from "../assets/assets";
-
 const initialState = {
-  user: {
-    name: "Anik",
-    image: "https://res.cloudinary.com/dj6y31jyx/image/upload/v1752071229/IMG_0041_oo6ezt.jpg",
-  },
-
-  isSeller: false,
-  
+  user: JSON.parse(localStorage.getItem("user")) || null,
+  address: JSON.parse(localStorage.getItem("addresses")) || [],
+  isSeller: false, 
   showUserLogin: false,
 };
 
@@ -19,14 +13,24 @@ export const appSlice = createSlice({
     setShowUserLogin: (state, action) => {
       state.showUserLogin = action.payload;
     },
+        setUser: (state, action) => {
+      state.user = action.payload; // ✅ Update user in store
+    },
     logout: (state) => {
-      state.user = null;
+      localStorage.removeItem("user");
+      state.user = null
       state.isSeller = false;
       state.showUserLogin = false;
     },
+    setAddress:(state,action) =>{
+       state.address.push( action.payload)
+    },
+    replaceAddress : (state,action)=>{
+        state.address = action.payload
+    }
     // Add more app-related reducers as needed
   },
 });
 
-export const { setShowUserLogin, logout } = appSlice.actions;
+export const { setShowUserLogin, logout,setUser,setAddress, replaceAddress } = appSlice.actions;
 export default appSlice.reducer;

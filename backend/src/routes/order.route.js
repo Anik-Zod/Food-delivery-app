@@ -5,7 +5,7 @@ import { getAllOrders, getUserOrders, placeOrderCOD } from '../controllers/order
 const orderRouter = Router();
 
 orderRouter.post('/cod',authUser,placeOrderCOD);
-orderRouter.get('/user',authUser,getUserOrders)
+orderRouter.get('/myOrder/:userId',getUserOrders)
 orderRouter.get('/seller',authUser,getAllOrders)
 
 export default orderRouter;

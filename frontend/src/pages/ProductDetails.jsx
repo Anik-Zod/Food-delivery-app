@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const [thumbnail, setThumbnail] = useState();
 
   const { id } = useParams();
-  console.log(id);
+
 
   const {
     data: product,
@@ -21,7 +21,7 @@ const ProductDetails = () => {
     isError,
     error,
   } = useFetch("detail", `/product/${id}`);
-  console.log("product =", product);
+
 
   const {
     data: sugesstionProducts = [],
@@ -50,7 +50,6 @@ const ProductDetails = () => {
   };
 
   const [relatedProducts, setRelatedProducts] = useState([]);
-  console.log("related Products =",relatedProducts)
   useEffect(() => {
     if (sugesstionProducts && product) {
       setRelatedProducts(

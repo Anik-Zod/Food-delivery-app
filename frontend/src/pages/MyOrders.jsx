@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import axiosInstance from '../api/axios';
+import { useSelector } from 'react-redux';
 
 
 function MyOrders() {
     const [myOrders, setMyOrders] = useState([]);
-    const[dummyOrders,setDummyOrders]=useState([])
-    useEffect(() => {
-        setMyOrders(dummyOrders);
-    }, []);
+    const user = useSelector(state=>state.app.user)
+
+  useEffect(() => {
+    if (!user?._id) return;
+
+    const fetchOrders = async () => {
+      try {
+        const response = await axiosInstance.get(`/order/myOrder/${user._id}`);
+        setMyOrders(response.data.orders || []); // Adjust this based on your backend response shape
+      } catch (error) {
+        console.error("Failed to fetch orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, [user]);
 
     return (
         <div className="mt-20 pb-20 max-w-5xl mx-auto px-4">
