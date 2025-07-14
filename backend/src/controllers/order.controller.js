@@ -4,7 +4,7 @@ import Order from "../models/order.model.js";
 //place Order
 export const placeOrderCOD = async (req, res) => {
   try {
-    const { userId, items, address } = req.body;
+    const { userId, items, address,paymentType } = req.body;
     if (!address || items.length === 0)
       return res.json({ success: false, message: "Invalid data" });
 
@@ -22,7 +22,7 @@ export const placeOrderCOD = async (req, res) => {
       items,
       amount,
       address,
-      paymentType: "COD",
+      paymentType: paymentType,
     });
     return res.json({ success: true, message: "Order placed successfully" });
   } catch (error) {

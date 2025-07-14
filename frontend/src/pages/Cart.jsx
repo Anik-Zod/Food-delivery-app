@@ -68,6 +68,7 @@ const Cart = () => {
         userId: user._id,
         items: itemsToSend,
         address: selectedAddress,
+        paymentType:paymentOption
       });
 
       if (res.data.success) {
