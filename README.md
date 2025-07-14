@@ -1,7 +1,3 @@
-Certainly! Here's a comprehensive README template tailored for your Food Delivery App project:
-
----
-
 # 🍔 Food Delivery App
 
 A modern, fully functional Grocery delivery application designed to streamline the process of ordering Grocery from local stores. This project aims to provide a seamless experience for both customers and sellers.
