@@ -39,7 +39,7 @@ app.use(rateLimit({
   message: 'Too many requests, please try again later.'
 }))
 
-app.get('/api/ping', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).json({ message: 'Server is running' });
 });
 app.use('/api/user', homeRouter);
