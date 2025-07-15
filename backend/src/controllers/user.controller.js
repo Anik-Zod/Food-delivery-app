@@ -60,6 +60,8 @@ export const register = async (req, res, next) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    // Response is sent here if email or password is missing
     if (!email || !password)
       res.json({
         success: false,
@@ -86,11 +88,17 @@ export const login = async (req, res) => {
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
-    res.status(200).json({success:true,user:{ _id:user._id,name: user.name, email: user.email,image:user.image }});
+
+    // Send the response after processing the login logic
+    res.status(200).json({
+      success: true,
+      user: { _id: user._id, name: user.name, email: user.email, image: user.image },
+    });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
 };
+
 
 //check Auth
 export const isAuth = async (req, res) => {

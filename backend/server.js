@@ -5,15 +5,16 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
-import mongoose from 'mongoose';
+
 import cookieParser from 'cookie-parser';
-import homeRouter from './routes/home.route.js';
-import sellerRouter from './routes/seller.route.js';
-import ConnectCloudinary from './configs/cloudinary.js';
-import productRouter from './routes/product.route.js';
-import cartRouter from './routes/cart.route.js';
-import addressRouter from './routes/adress.route.js';
-import orderRouter from './routes/order.route.js';
+import homeRouter from './src/routes/home.route.js';
+import sellerRouter from './src/routes/seller.route.js';
+import ConnectCloudinary from './src/configs/cloudinary.js';
+import productRouter from './src/routes/product.route.js';
+import cartRouter from './src/routes/cart.route.js';
+import addressRouter from './src/routes/adress.route.js';
+import orderRouter from './src/routes/order.route.js';
+import { connectDB } from './db.js';
 
 dotenv.config();
 
@@ -38,7 +39,9 @@ app.use(rateLimit({
   message: 'Too many requests, please try again later.'
 }))
 
-
+app.get('/api/ping', (req, res) => {
+  res.status(200).json({ message: 'Server is running' });
+});
 app.use('/api/user', homeRouter);
 app.use('/api/seller', sellerRouter);
 app.use('/api/product',productRouter)
@@ -47,20 +50,7 @@ app.use('/api/address',addressRouter)
 app.use('/api/order',orderRouter)
 
 
-//connect to mongodb
-const connectDB = async()=>{
-  try {
-    await mongoose.connect(process.env.MONGO_URL)
-    console.log('MongoDB connected successfully');
-  } catch (error) {
-    console.error('MongoDB connection failed:', error);
-    process.exit(1);
-  }
-}
-
 const startServer = async()=>{
-
-  
   await connectDB();
   await ConnectCloudinary();
   
