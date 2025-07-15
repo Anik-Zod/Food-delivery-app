@@ -42,12 +42,12 @@ app.use(rateLimit({
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Server is running' });
 });
-app.use('/api/user', homeRouter);
-app.use('/api/seller', sellerRouter);
-app.use('/api/product',productRouter)
-app.use('/api/cart',cartRouter)
-app.use('/api/address',addressRouter)
-app.use('/api/order',orderRouter)
+app.use('/user', homeRouter);
+app.use('/seller', sellerRouter);
+app.use('/product',productRouter)
+app.use('/cart',cartRouter)
+app.use('/address',addressRouter)
+app.use('/order',orderRouter)
 
 
 const startServer = async()=>{
