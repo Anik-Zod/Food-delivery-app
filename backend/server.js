@@ -28,7 +28,7 @@ app.use(helmet());
 app.use(compression())
 app.use(morgan('dev'))
 app.use(cors({
-  origin:'https://gorcery-delivery-app-pyq7.vercel.app',
+  origin:['https://gorcery-delivery-app-pyq7.vercel.app','http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type','Authorization']

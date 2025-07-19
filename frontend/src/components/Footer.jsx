@@ -40,7 +40,7 @@ function Footer() {
           <p className="text-lg text-gray-800">COMPANY</p>
           <ul className="mt-3 flex flex-col gap-2 text-sm">
             <li>
-              <a href="#">About</a>
+              <a href="#">+880 1996259365</a>
             </li>
             <li>
               <a href="#">Careers</a>
@@ -61,7 +61,7 @@ function Footer() {
           <p className="text-lg text-gray-800">SUPPORT</p>
           <ul className="mt-3 flex flex-col gap-2 text-sm">
             <li>
-              <a href="#">Help Center</a>
+              <a href="#">anikdas169@gmail.com</a>
             </li>
             <li>
               <a href="#">Safety Information</a>
