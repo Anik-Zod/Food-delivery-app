@@ -43,13 +43,21 @@ function MainBanner() {
         />
       </div>
       <div>
-        <div className="mt-9 relative">
-          {/* Search Box */}
-          <div className="mt-6 mb-12 relative flex justify-center">
-            <input onChange={(e)=>setInput(e.target.value)} className="border border-gray-300 rounded-2xl py-2 px-12"/>
-            <Search onClick={handleChange} className="absolute right-10 top-2 text-primary"/>
-          </div>
-        </div>
+<div className="mt-9 relative w-full px-4">
+  {/* Search Box */}
+  <div className="mt-6 mb-12 relative flex justify-center">
+    <input
+      onChange={(e) => setInput(e.target.value)}
+      className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 border border-gray-300 rounded-2xl py-2 px-12 focus:outline-none"
+      placeholder="Search..."
+    />
+    <Search
+      onClick={handleChange}
+      className="absolute right-6 top-2 sm:right-10 text-primary cursor-pointer"
+    />
+  </div>
+</div>
+
       </div>
     </div>
   );

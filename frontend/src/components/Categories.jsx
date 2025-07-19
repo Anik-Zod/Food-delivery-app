@@ -29,7 +29,7 @@ function Categories() {
                 key={index}
                 className="py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center"
               >
-                <Skeleton height={80} width={80} />
+                <Skeleton height={140} width={140} />
                 <Skeleton height={15} width={60} className="mt-2" />
               </div>
             ))
