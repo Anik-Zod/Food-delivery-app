@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowUserLogin, logout, setUser } from "../features/appSlice";
 import { setSearchQuery } from "../features/productSlice";
 import axiosInstance from "../api/axios";
+import {House, CalendarArrowDown, ShoppingBag, Info, Contact } from 'lucide-react';
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -30,6 +31,21 @@ export default function Navbar() {
       navigate("/products");
     }
   }, [searchQuery]);
+  
+const manuRef = useRef();
+
+useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (manuRef.current && !manuRef.current.contains(e.target)) {
+      setOpen(false);
+    }
+  };
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   return (
     <nav className="flex items-center justify-between px-6 sm:px-6 md:px-16 lg:px-24 xl:px-27 py-4 border-b border-gray-300 bg-white relative transition-all">
@@ -43,9 +59,9 @@ export default function Navbar() {
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/"}> Home</NavLink>
         <NavLink to={"/products"}>All Product</NavLink>
-
+        
         {user && (
           <div
             onClick={() => setOpen(false)}
@@ -112,6 +128,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
+      ref={manuRef}
         className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
@@ -127,24 +144,36 @@ export default function Navbar() {
 
         <nav className="flex flex-col px-6 space-y-4 text-sm">
           <NavLink onClick={() => setOpen(false)} to="/" className="block">
-            Home
+            <div className="flex gap-3">
+             <House size={18}/>
+              Home
+            </div>
           </NavLink>
           <NavLink
             onClick={() => setOpen(false)}
             to="/products"
             className="block"
           >
+            <div className="flex gap-4">
+            <ShoppingBag size={16} />
             All Product
+            </div>
           </NavLink>
           <NavLink onClick={() => setOpen(false)} to="#" className="block">
+            <div className="flex gap-3">
+           <Info size={16}/>
             About
+            </div>
           </NavLink>
           <NavLink
             onClick={() => setOpen(false)}
             to="/contact"
             className="block"
           >
+            <div className="flex gap-3">
+             <Contact size={16}/>
             Contact
+            </div>
           </NavLink>
 
           {user && (

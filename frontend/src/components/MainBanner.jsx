@@ -43,7 +43,7 @@ function MainBanner() {
         />
       </div>
       <div>
-<div className="mt-9 relative w-full px-4">
+<div className="sm:hidden mt-9 relative w-full px-4">
   {/* Search Box */}
   <div className="mt-6 mb-12 relative flex justify-center">
     <input
